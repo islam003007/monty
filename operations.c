@@ -13,17 +13,20 @@
 int push(stack_t **stack, char *element, unsigned int line_number)
 {
 	stack_t *new_top;
+	int exit_num = 0;
 
 	if (element == NULL)
 	{
 		fprintf(stderr, "L%i: usage: push integer\n", line_number);
-		return (-1);
+		exit_num = 1;
+		void exit_stack(stack, line, fp, exit_num);
 	}
 	new_top = malloc(sizeof(stack_t));
 	if (new_top == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		return (-1);
+		exit_num = 1;
+		void exit_stack(stack, line, fp, exit_num);
 	}
 
 	new_top->n = atoi(element);
@@ -60,5 +63,4 @@ void pall(stack_t **stack, unsigned int line_number)
 		temp = temp->next;
 	}
 }
-
 

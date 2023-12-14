@@ -17,10 +17,10 @@ int main(int argc, char **argv)
 	FILE *fp = file_open(argc, argv);
 	size_t n = 0;
 	unsigned int line_number = 0;
-	int exit_error = 0;
+	int exit_num = 0;
 	void (*operation)(stack_t **stack, unsigned int line_number);
 
-	while (!exit_error)
+	while (1)
 	{
 		line_number++;
 		line_size = getline(&line, &n, fp);
@@ -29,25 +29,16 @@ int main(int argc, char **argv)
 		parser(line, args);
 		if (args[0] == NULL)
 			continue;
-		if (strcmp(args[0], "push") == 0 && args[0])
+		if (strcmp(args[0], "push") == 0)
 		{
-			if (push(&stack, args[1], line_number) == -1)
-				exit_error = 1;
+			push(&stack, args[1], line_number);
 			continue;
 		}
 		operation = get_op(args[0], line_number);
-		if (operation == NULL)
-		{
-			exit_error = 1;
-			continue;
-		}
 		operation(&stack, line_number);
 	}
-	free_stack(stack);
-	free(line);
-	fclose(fp);
-	if (exit_error)
-		exit(EXIT_FAILURE);
+
+	void exit_stack(stack, line, fp, exit_num);
 	return (0);
 }
 
@@ -104,6 +95,7 @@ void parser(char *line, char *args[])
 void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 {
 	int i;
+	int exit_num = 0;
 	instruction_t op_arr[] = {
 		{"pall", pall},
 		{NULL, NULL}
@@ -116,5 +108,6 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 	}
 
 	fprintf(stderr, "L%i: unknown instruction %s", line_n, op_code);
-	return (NULL);
+	exit_num = 1;
+	void exit_stack(stack, line, fp, exit_num);
 }
