@@ -10,16 +10,15 @@
 */
 int main(int argc, char **argv)
 {
-	data.line = NULL;
-	data.fp = file_open(argc, argv);
-	data.exit_num = 0;
-	__ssize_t line_size;
 	char *args[2];
+	ssize_t line_size;
 	stack_t *stack = NULL;
 	size_t n = 0;
 	unsigned int line_number = 0;
 	void (*operation)(stack_t **stack, unsigned int line_number);
+	data_t data = {NULL, NULL, 0};
 
+	data.fp = file_open(argc, argv);
 	while (1)
 	{
 		line_number++;
@@ -47,7 +46,7 @@ int main(int argc, char **argv)
 		operation(&stack, line_number);
 	}
 
-	exit_stack(stack, data.line, data.line, data.exit_num);
+	exit_stack(stack, data.line, data.fp, data.exit_num);
 	return (0);
 }
 
