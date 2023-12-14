@@ -8,7 +8,7 @@
  * @fp: inputs file pointer.
  * @exit_num: inputs exit number.
 */
-void exit_stack(char *stack, char *line, FILE *fp, int exit_num)
+void exit_stack(stack_t *stack, char *line, FILE *fp, int exit_num)
 {
 	free_stack(stack);
 	free(line);

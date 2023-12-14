@@ -31,14 +31,23 @@ int main(int argc, char **argv)
 			continue;
 		if (strcmp(args[0], "push") == 0)
 		{
-			push(&stack, args[1], line_number);
+			if (push(&stack, args[1], line_number) == -1)
+			{
+				exit_num = 1;
+				break;
+			}
 			continue;
 		}
 		operation = get_op(args[0], line_number);
+		if (operation == NULL)
+		{
+			exit_num = 1;
+			break;
+		}
 		operation(&stack, line_number);
 	}
 
-	void exit_stack(stack, line, fp, exit_num);
+	exit_stack(stack, line, fp, exit_num);
 	return (0);
 }
 
@@ -95,7 +104,6 @@ void parser(char *line, char *args[])
 void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 {
 	int i;
-	int exit_num = 0;
 	instruction_t op_arr[] = {
 		{"pall", pall},
 		{NULL, NULL}
@@ -108,6 +116,5 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 	}
 
 	fprintf(stderr, "L%i: unknown instruction %s", line_n, op_code);
-	exit_num = 1;
-	void exit_stack(stack, line, fp, exit_num);
+	return (NULL);
 }
