@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	int exit_error = 0;
 	void (*operation)(stack_t **stack, unsigned int line_number);
 
-	while (!exit_error)
+	while (1)
 	{
 		line_number++;
 		line_size = getline(&line, &n, fp);
@@ -33,13 +33,13 @@ int main(int argc, char **argv)
 		{
 			if (push(&stack, args[1], line_number) == -1)
 				exit_error = 1;
-			continue;
+			break;
 		}
 		operation = get_op(args[0], line_number);
 		if (operation == NULL)
 		{
 			exit_error = 1;
-			continue;
+			break;
 		}
 		operation(&stack, line_number);
 	}
