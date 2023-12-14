@@ -10,30 +10,30 @@
 */
 int main(int argc, char **argv)
 {
+	data.line = NULL;
+	data.fp = file_open(argc, argv);
+	data.exit_num = 0;
 	__ssize_t line_size;
 	char *args[2];
 	stack_t *stack = NULL;
-	char *line = NULL;
-	FILE *fp = file_open(argc, argv);
 	size_t n = 0;
 	unsigned int line_number = 0;
-	int exit_num = 0;
 	void (*operation)(stack_t **stack, unsigned int line_number);
 
 	while (1)
 	{
 		line_number++;
-		line_size = getline(&line, &n, fp);
+		line_size = getline(&data.line, &n, data.fp);
 		if (line_size == -1)
 			break;
-		parser(line, args);
+		parser(data.line, args);
 		if (args[0] == NULL)
 			continue;
 		if (strcmp(args[0], "push") == 0)
 		{
 			if (push(&stack, args[1], line_number) == -1)
 			{
-				exit_num = 1;
+				data.exit_num = 1;
 				break;
 			}
 			continue;
@@ -41,13 +41,13 @@ int main(int argc, char **argv)
 		operation = get_op(args[0], line_number);
 		if (operation == NULL)
 		{
-			exit_num = 1;
+			data.exit_num = 1;
 			break;
 		}
 		operation(&stack, line_number);
 	}
 
-	exit_stack(stack, line, fp, exit_num);
+	exit_stack(stack, data.line, data.line, data.exit_num);
 	return (0);
 }
 

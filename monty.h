@@ -38,6 +38,22 @@ typedef struct instruction_s
 		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct data_s - caries data values.
+ *
+ * @fp: pointer to monty file
+ * @line: line content
+ * @exit_num: exit number
+ * Description: carries data values through the program
+ */
+typedef struct data_s
+{
+	FILE *fp;
+	char *line;
+	int exit_num;
+}  data_t;
+extern data_t data;
+
 FILE *file_open(int argc, char **argv);
 void parser(char *line, char *args[]);
 void free_stack(stack_t *stack);
@@ -45,5 +61,4 @@ int push(stack_t **stack, char *element, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int);
 void exit_stack(stack_t *stack, char *line, FILE *fp, int exit_num);
-
 #endif
