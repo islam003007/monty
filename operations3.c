@@ -65,7 +65,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	str[1024] = 0;
-	while (temp != NULL || i < 1024)
+	while (temp != NULL && i < 1024)
 	{
 		if (temp->n > 127 || temp->n <= 0)
 			break;
