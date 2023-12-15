@@ -68,6 +68,7 @@ void sub(stack_t **stack, unsigned int line_number);
 void divide(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
 void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int);
 void exit_stack(stack_t *stack);
 #endif
