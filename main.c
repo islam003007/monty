@@ -1,4 +1,5 @@
 #include "monty.h"
+data_t data = {NULL, NULL, 0};
 
 /**
  * main - entry point.
@@ -16,7 +17,6 @@ int main(int argc, char **argv)
 	size_t n = 0;
 	unsigned int line_number = 0;
 	void (*operation)(stack_t **stack, unsigned int line_number);
-	data_t data = {NULL, NULL, 0};
 
 	data.fp = file_open(argc, argv);
 	while (1)
@@ -30,23 +30,16 @@ int main(int argc, char **argv)
 			continue;
 		if (strcmp(args[0], "push") == 0)
 		{
-			if (push(&stack, args[1], line_number) == -1)
-			{
-				data.exit_num = 1;
-				break;
-			}
+			push(&stack, args[1], line_number);
 			continue;
 		}
 		operation = get_op(args[0], line_number);
 		if (operation == NULL)
-		{
-			data.exit_num = 1;
 			break;
-		}
 		operation(&stack, line_number);
 	}
 
-	exit_stack(stack, data.line, data.fp, data.exit_num);
+	exit_stack(stack);
 	return (0);
 }
 
@@ -115,5 +108,6 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 	}
 
 	fprintf(stderr, "L%i: unknown instruction %s", line_n, op_code);
+	data.exit_num = 1;
 	return (NULL);
 }

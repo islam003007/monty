@@ -17,13 +17,15 @@ int push(stack_t **stack, char *element, unsigned int line_number)
 	if (element == NULL)
 	{
 		fprintf(stderr, "L%i: usage: push integer\n", line_number);
-		return (-1);
+		data.exit_num = 1;
+		exit_stack(*stack);
 	}
 	new_top = malloc(sizeof(stack_t));
 	if (new_top == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		return (-1);
+		data.exit_num = 1;
+		exit_stack(*stack);
 	}
 
 	new_top->n = atoi(element);
