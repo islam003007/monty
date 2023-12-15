@@ -98,6 +98,7 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 	int i;
 	instruction_t op_arr[] = {
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
@@ -107,7 +108,7 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 			return (op_arr[i].f);
 	}
 
-	fprintf(stderr, "L%i: unknown instruction %s", line_n, op_code);
+	fprintf(stderr, "L%i: unknown instruction %s\n", line_n, op_code);
 	data.exit_num = 1;
 	return (NULL);
 }

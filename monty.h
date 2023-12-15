@@ -59,6 +59,7 @@ void parser(char *line, char *args[]);
 void free_stack(stack_t *stack);
 int push(stack_t **stack, char *element, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
 void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int);
 void exit_stack(stack_t *stack);
 #endif
