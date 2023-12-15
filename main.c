@@ -104,6 +104,8 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
+		{"div", divide},
+		{"mul", mul},
 		{NULL, NULL}
 	};
 
