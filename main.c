@@ -99,6 +99,7 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 	instruction_t op_arr[] = {
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 

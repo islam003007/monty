@@ -81,3 +81,25 @@ void pint(stack_t **stack, unsigned int line_number)
 	printf("%i\n", (*stack)->n);
 }
 
+/**
+ * pop - prints the value at the top of the stack.
+ *
+ * @stack: inputs pointer to top.
+ * @line_number: inputs line number.
+*/
+void pop(stack_t **stack, unsigned int line_number)
+{
+	if (stack == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%i: can't pop an empty stack\n", line_number);
+		data.exit_num = 1;
+		exit_stack(*stack);
+	}
+
+	(*stack) = (*stack)->next;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
+}
+
+
+
