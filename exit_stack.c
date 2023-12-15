@@ -9,7 +9,7 @@
 void exit_stack(stack_t *stack)
 {
 	free_stack(stack);
-	free(data.fp);
+	free(data.line);
 	fclose(data.fp);
 	if (data.exit_num)
 		exit(EXIT_FAILURE);
