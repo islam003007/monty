@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		if (line_size == -1)
 			break;
 		parser(data.line, args);
-		if (args[0] == NULL)
+		if (args[0] == NULL || args[0][0] == '#')
 			continue;
 		if (strcmp(args[0], "push") == 0)
 		{
