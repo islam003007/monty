@@ -50,3 +50,30 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	printf("%c\n", (*stack)->n);
 }
+
+/**
+ * pstr - prints the string starting at the top of the stack.
+ *
+ * @stack: inputs pointer to top.
+ * @line_number: inputs line number.
+*/
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	char str[1024];
+	stack_t *temp = *stack;
+	int i = 0;
+	(void)line_number;
+
+	str[1024] = 0;
+	while (temp != NULL)
+	{
+		if (temp->n > 127 || temp->n <= 0)
+			break;
+		str[i] = temp->n;
+		temp = temp->next;
+		i++;
+	}
+
+	str[i] = 0;
+	printf("%s\n", str);
+}
