@@ -109,5 +109,27 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 }
 
+/**
+ * swap - prints the value at the top of the stack.
+ *
+ * @stack: inputs pointer to top.
+ * @line_number: inputs line number.
+*/
+void swap(stack_t **stack, unsigned int line_number)
+{
+	int temp;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%i: can't swap, stack too short\n", line_number);
+		data.exit_num = 1;
+		exit_stack(*stack);
+	}
+
+	temp = (*stack)->next->n;
+	(*stack)->next->n = (*stack)->n;
+	(*stack)->n = temp;
+}
+
 
 
