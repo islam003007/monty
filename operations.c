@@ -82,7 +82,7 @@ void pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pop - prints the value at the top of the stack.
+ * pop - pops the top.
  *
  * @stack: inputs pointer to top.
  * @line_number: inputs line number.
@@ -110,7 +110,7 @@ void pop(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * swap - prints the value at the top of the stack.
+ * swap - swaps the highest values stored in the stack.
  *
  * @stack: inputs pointer to top.
  * @line_number: inputs line number.

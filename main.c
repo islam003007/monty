@@ -102,6 +102,7 @@ void (*get_op(char *op_code, int line_n))(stack_t **, unsigned int)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 

@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * add - prints the value at the top of the stack.
+ * add - adds the last 2 values of the stack.
  *
  * @stack: inputs pointer to top.
  * @line_number: inputs line number.
@@ -18,4 +18,17 @@ void add(stack_t **stack, unsigned int line_number)
 
 	(*stack)->next->n += (*stack)->n;
 	pop(stack, line_number);
+}
+
+/**
+ * nop - does nothing.
+ *
+ * @stack: inputs pointer to top.
+ * @line_number: inputs line number.
+*/
+void nop(stack_t **stack, unsigned int line_number)
+{
+
+	(void)stack;
+	(void)line_number;
 }
